@@ -10,10 +10,22 @@ print_tests() {
 }
 
 print_instructions() {
-    MSG="Dummy instructions. Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+    cat<<EOF
+===================== Exercise 01: Simple letter matching =====================
+In this exercise, match with every single instance of the letter "a".
+This includes both upper and lower case, "A" and "a".
+Only match with one letter at a time, not a sequence or group of them.
+     
+Hint: Character classes are defined within square brackets, [], and are
+      different from groups, which are within parentheses, ().
+
+See also: The wikipedia article for regular expressions is quite informative,
+          you can find it on https://en.wikipedia.org/wiki/Regular_expression
+          Make sure to use the perl style regexes though, not POSIX or vim.
+EOF
+
     CMD="bash ${0} '/[Rr]egexp?/'"
-    echo ${MSG}
-    echo "These tests will be run:"
+    echo "=== These tests will be run ==="
     print_tests
     echo "To submit your answer, run this script with the regex in quotes. Example:"
     echo "     ${CMD}"
