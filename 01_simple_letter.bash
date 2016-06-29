@@ -1,7 +1,6 @@
 #!/bin/bash
 
-TESTS=("Ah!" "Aaaargh!")
-EXPECTED=("A" "A a a a")
+
 
 print_tests() {
     for i in ${!TESTS[*]}; do
@@ -61,11 +60,10 @@ grade() {
 }
 
 run_all_tests_and_exit() {
-    REGEX="${1}g"
+    REGEX="${1}"
     for i in ${!TESTS[*]}; do
 	TEST=${TESTS[i]}
-	PERL_SCRIPT="my @res = (\"${TESTS[i]}\" =~ ${REGEX}); print(\"@res\");"
-	RESULT=$(perl -e "${PERL_SCRIPT}")
+	RESULT=$(perl run_regex.pl "${REGEX}" "${TEST}")
 	grade "${EXPECTED[i]}" "${RESULT}" "${TEST}"
     done
     echo "Good job! Exercise finished successfully. Move on to the next one."
