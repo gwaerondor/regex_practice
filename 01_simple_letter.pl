@@ -3,7 +3,7 @@ use strict;
 use 5.010;
 
 my %tests=("Ah!" => "A",
-	   "Aaaargh!" => "A a a a");
+	   "Aaaargh!" => "A, a, a, a");
 
 sub print_instructions {
      my $instructions = <<"END";
@@ -25,8 +25,8 @@ END
 sub get_all_matches {
     my $regex = $_[0];
     my $target = $_[1];
-    my @results = ($target =~ /$regex/g); #fffff, /n is for perl 5.22 and greater. Still need to make all groups non-capturing!
-    return @results;
+    my @results = ($target =~ /$regex/g);
+    return join(", ", @results);
 }
 
 sub run_test {
@@ -34,13 +34,13 @@ sub run_test {
     my $test = $_[1];
     my $expected = $tests{$test};
     print("Running test \"${test}\"... "); 
-    my @matches = get_all_matches($regex, $test);
-    if(@matches == $expected) {
+    my $matches = get_all_matches($regex, $test);
+    if($matches eq $expected) {
 	say("passed.");
     } else {
 	say("FAILED!");
 	say("    Expected: $expected");
-	say("    Got:      @matches");
+	say("    Got:      $matches");
     }
 }
 
