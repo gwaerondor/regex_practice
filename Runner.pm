@@ -17,7 +17,8 @@ sub print_instructions {
 sub get_all_matches {
     my $regex = $_[0];
     my $target = $_[1];
-    my @results = ($target =~ /$regex/g);
+    my @results = ();
+    push(@results, $&) while ($target =~ /$regex/g);
     return join(", ", @results);
 }
 
