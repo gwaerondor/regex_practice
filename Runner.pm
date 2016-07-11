@@ -3,14 +3,15 @@ package Runner;
 use warnings;
 use strict;
 use 5.010;
+use List::Util "min";
 
 sub print_instructions {
     my $instructions = shift(@_);
     my %tests = @_;
     my @test_keys = keys(%tests);
-    my $test_strings = join("\n  ", @test_keys);
+    my $test_strings = join("\"\n  - \"", @test_keys) . "\"";
     say("$instructions");
-    print("The following texts will be tested:\n  ");
+    print("The following texts will be tested:\n  - \"");
     say($test_strings);
 }
 
@@ -22,11 +23,22 @@ sub get_all_matches {
     return join(", ", @results);
 }
 
+sub fix_test_length {
+    my $s = $_[0];
+    my $trunc_length = min(50, length($s));
+    my $result = substr($s, 0, $trunc_length);
+    while(length($result) < 50) {
+	$result = $result . " ";
+    }
+    return $result;
+}
+
 sub run_test {
     my $regex = $_[0];
     my $test = $_[1];
     my $expected = $_[2];
-    print("Running test \"${test}\"... "); 
+    my $truncated_test = fix_test_length($test);
+    print("Running test: ${truncated_test}  ..."); 
     my $matches = get_all_matches($regex, $test);
     if($matches eq $expected) {
 	say("passed.");
