@@ -25,7 +25,6 @@ my %tests=("Song = [{X, bottles_of_beer} || X <- lists:reverse(lists:seq(1,99))]
 	   ""
 );
 
-
 my $instructions = <<"END";
 =========================== Exercise 05: Erlang code ===========================
 You wrote a piece of code ten years ago that you need to change now.
@@ -51,7 +50,6 @@ Note: Keep in mind that square brackets, curly braces and pipes are all
       that they must be escaped if we want to match them.
 Note: There can be an arbitrary number of spaces between Erlang terms
       and expressions, so remember to keep white spaces in mind!
-
 END
 
 sub main {
