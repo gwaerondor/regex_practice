@@ -31,7 +31,7 @@ sub main {
     if($#ARGV < 0) {
 	Runner::print_instructions($instructions, %tests);
     } else {
-	my $regex = $ARGV[0];
+	my $regex = "@ARGV";
 	Runner::run_all_tests($regex, %tests);
     }
 }
