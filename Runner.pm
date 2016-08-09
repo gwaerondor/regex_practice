@@ -41,10 +41,10 @@ sub run_test {
     print("Running test: ${truncated_test}  ..."); 
     my $matches = get_all_matches($regex, $test);
     if($matches eq $expected) {
-	say("passed.");
+	say("\e[32mpassed\e[0m.");
 	return 1;
     } else {
-	say("FAILED!");
+	say("\e[31mFAILED\e[0m!");
 	say("    Expected: $expected");
 	say("    Got:      $matches");
 	return 0;
@@ -54,12 +54,14 @@ sub run_test {
 sub run_all_tests {
     my $regex = shift(@_);
     my %tests = @_;
+    my @results = ();
     for my $t (keys %tests) {
-	if(!run_test($regex, $t, $tests{$t})) {
-	    exit(1);
-	} 
+	my $result = run_test($regex, $t, $tests{$t});
+	push(@results, $result);
     }
-    say("Good job! You pass.");
+    if(!grep(/0/, @results)){
+	say("Good job! You pass.");
+    }
 }
 
 1;
