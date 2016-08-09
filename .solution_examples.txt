@@ -1,0 +1,74 @@
+This file contains solution examples for each of the exercises,
+together with small descriptions why they work. Do note that
+there are many valid solutions and that these might not be the
+best ones at all.
+
+In the script, the surrounding // characters and the global
+modifier g are added automatically, but these examples try to
+show the "proper" perly way of writing the regular expressions.
+
+1: Simple letter
+/[Aa]/g
+
+The square brackets [] denote a character class. The letters
+inside are not a sequence, but a set of possible characters.
+In other words, we are looking for ONE of either A or a.
+
+
+2: Numbers
+/\d+(\.\d+)?/g
+
+\d is a special character that means digit, and corresponds to
+0-9. It is a shorthand way of writing [0123456789].
+The plus means that the previous character or group can occur
+between one and infinity times.
+The ? at the end means "can occur zero or one times", and the
+parentheses signify a GROUP, so (\.\d)? means that a dot followed
+by one or more digits can occur once or not at all.
+
+3: Start and end
+/(^Chapter[^.]*\.)|(.*The End\.$)/g
+
+^ means "start of line" when it is not part of a character class.
+When it is the first character of a character class, it means "not".
+Conversely, $ means "end of line".
+The pipe character | means "or".
+In essence, we are saying:
+  Match "Chapter" when it occurs at the start of a line, together
+  with any non-period characters until we encounter one period;
+OR
+  Match anything ending with the words "The End." but only if it
+  occurs at the very end of the line.
+
+04: Time
+/[012]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(\s[AaPp]\.?[Mm]\.?)?/g
+
+In a character class, the dash has a special meaning; it signifies
+a range of characters. For example [0-9] is equivalent to \d.
+In the regex above, we say that the hour will always be a 0, 1 or 2
+followed by any other digit. The hours and minutes are separated by :,
+and then we can have any digit 0-5 followed by any digit.
+After this it gets a bit messy.
+We may or may not have two more digits
+      If we have that, then we may or may not have decimal seconds
+After that, we may or may not have A.M., a.m., AM, am, etc...
+
+05: Erlang code
+(\[.*\{.+\}.*\|\|.+\])|(lists:map\(fun\(.*\).*->.*\{.+\}.*end.*\))
+
+This is split into two groups for simplicity, separated by OR, |
+The first group \[.*\{.+\}.*\|\|.+\] is saying that there will be
+a left square bracket followed by any other characters, but then
+there must be a { and a } with any sequence characters between them.
+There will then be two pipe characters (list comprehension!) followed
+by anything and then a right square bracket. Basically, we are looking
+for the sequence [ { } || ] with characters inserted between them.
+
+The second group is looking for lists:map/2 where the first
+argument starts with the word "fun". There may be spaces in between
+which is checked with .* (we are not VALIDATING erlang code! if we
+were, we should not be expecting ANY character instead of white spaces).
+After fun(Argument) we are expecing to see ->, then before the end
+(in the body) we are expecing to see a tuple {}.
+The second argument can be anything, so we let anything pass
+with the .* after "end".
