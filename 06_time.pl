@@ -16,7 +16,6 @@ my %tests=("Ding dong, it is 23:00:00" => "23:00:00",
 	   
 
 my $instructions = <<"END";
-============================== Exercise 04: Time ==============================
 There are many ways to write time, some more correct than others.
 Write a regex that matches time, assuming it is written out either in 24-hour
 form or 12-hour form. Hours and minutes must be typed out and separated by
@@ -35,6 +34,7 @@ END
 
 sub main {
     if($#ARGV < 0) {
+	Runner::print_title($0);
 	Runner::print_instructions($instructions, %tests);
     } else {
 	my $regex = "@ARGV";

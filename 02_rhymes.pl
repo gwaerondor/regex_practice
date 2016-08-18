@@ -10,12 +10,12 @@ my %tests=("fat" => "fat",
 	   "flat" => "flat");
 
 my $instructions = <<"END";
-============================= Exercise 02: Rhymes =============================
 Write a regular expression that matches some rhyming words ending with -at.
 END
 
 sub main {
     if($#ARGV < 0) {
+	Runner::print_title($0);
 	Runner::print_instructions($instructions, %tests);
     } else {
 	my $regex = $ARGV[0];

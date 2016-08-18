@@ -26,7 +26,6 @@ my %tests=("Song = [{X, bottles_of_beer} || X <- lists:reverse(lists:seq(1,99))]
 );
 
 my $instructions = <<"END";
-=========================== Exercise 05: Erlang code ===========================
 You wrote a piece of code ten years ago that you need to change now.
 You only remember vaguely what the snippet looked like. It was probably
 a list comprehension, and there was a tuple in the list comprehension body.
@@ -54,6 +53,7 @@ END
 
 sub main {
     if($#ARGV < 0) {
+	Runner::print_title($0);
 	Runner::print_instructions($instructions, %tests);
     } else {
 	my $regex = "@ARGV";

@@ -5,6 +5,18 @@ use strict;
 use 5.010;
 use List::Util "min";
 
+sub print_title {
+    my $script_name = $_[0];
+    my ($number, $name) = split(/_/, $script_name, 2);
+    $name =~ s/\.pl$//;
+    $name =~ s/_/ /g;
+    $name = ucfirst($name);
+    my $title = " Exercise " . $number . ": " . $name . " ";
+    my $pad_length = (80 - length($title))/2;
+    my $pad = ('=' x $pad_length);
+    say($pad . $title . $pad);
+}
+
 sub print_instructions {
     my $instructions = shift(@_);
     my %tests = @_;

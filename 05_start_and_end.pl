@@ -20,7 +20,6 @@ my %tests=("Chapter 1: It Was A Bright Cold Day In April, And The Clocks Were St
 );
 
 my $instructions = <<"END";
-========================== Exercise 03: Start and end ==========================
 I want you to match entire sentences containing the word "Chapter", but only
 when "Chapter" is the beginning of the text. Match the word "Chapter" and
 everything after it until the first period (.).
@@ -40,6 +39,7 @@ END
 
 sub main {
     if($#ARGV < 0) {
+	Runner::print_title($0);
 	Runner::print_instructions($instructions, %tests);
     } else {
 	my $regex = "@ARGV";

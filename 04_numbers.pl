@@ -14,7 +14,6 @@ my %tests=("I have 5 apples, and you have 3. The difference is 2." => "5, 3, 2",
           );
 
 my $instructions = <<"END";
-========================= Exercise 02: Finding numbers =========================
 I want you to find all numbers in a text. A "number" is is anything that
 fulfills these conditions:
 
@@ -29,6 +28,7 @@ END
 
 sub main {
     if($#ARGV < 0) {
+	Runner::print_title($0);
 	Runner::print_instructions($instructions, %tests);
     } else {
 	my $regex = "@ARGV";
