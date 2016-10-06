@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <style>
+      
+      table {border-collapse: collapse;}
+      table, th, td {border: 1px solid black;}
+      th { background-color: #a9dfbf;}
+      th, td {padding: 15px; text-align: left;}
+      tr:hover {background-color: #e5e5e5;}
+      td.pass {background-color: #239b56; color: white;}
+      td.skip {background-color: #d4ac0d; color: white;}
+      td.fail {background-color: #922b21; color: white;}
+    </style>
+    <title>Test Results</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+	<th> Testcase </th>
+	<th> Suite </th>
+	<th> Test name </th>
+	<th> Time </th>
+	<th> Result </th>
+	<th> Notes </th>
+      </tr>
+
+      <tr>
+	<td> 1+1 should equal 2 </td>
+	<td> Maths </td>
+	<td> adding_one_and_one </td>
+	<td> 0.1 s </td>
+	<td class="pass"> Passed </td>
+	<td> </td>
+      </tr>
+
+      <tr>
+	<td> Division by zero should be impossible </td>
+	<td> Maths </td>
+	<td> dividing_by_zero </td>
+	<td> 0.01 s </td>
+	<td class="pass"> Passed </td>
+	<td> </td>
+      </tr>
+
+      <tr>
+	<td> 2 + 3 * 3 / 15 should equal 2.6 </td>
+	<td> Maths </td>
+	<td> operator_priorities </td>
+	<td> 0.12 s </td>
+	<td class="pass"> Passed </td>
+	<td> </td>
+      </tr>
+
+      <tr>
+	<td> (2 + 3) * 3 / 15 should equal 1 </td>
+	<td> Maths </td>
+	<td> operator_priorities_with_groups </td>
+	<td> 0.12 s </td>
+	<td class="fail"> Failed </td>
+	<td> </td>
+      </tr>
+
+      <tr>
+	<td> Ensure that today is Saturday </td>
+	<td> Calendar </td>
+	<td> today_should_be_saturday </td>
+	<td> 0.000 s </td>
+	<td class="skip"> Skipped </td>
+	<td> Test only runs on Saturdays</td>
+      </tr>
+
+      <tr>
+	<td> Ensure that things are translated correctly </td>
+	<td> Language </td>
+	<td> things_should_be_translated </td>
+	<td> 3.14 s </td>
+	<td class="fail"> Failed </td>
+	<td> </td>
+      </tr>
+
+      <tr>
+	<td> Ensure that pigs fly </td>
+	<td> Physics </td>
+	<td> pigs_should_fly </td>
+	<td> 0.000 s </td>
+	<td class="skip"> Skipped </td>
+	<td> Test only runs when hell is frozen over </td>
+      </tr>
+
+      <tr>
+	<td> Ensure that Planck's constant is 6.62607004 x 10<sup>-34</sup> m<sup>2</sup> kg/s</td>
+	<td> Physics </td>
+	<td> verify_plancks_constant </td>
+	<td> 0.724 s </td>
+	<td class="pass"> Passed </td>
+	<td> If this test fails, the universe implodes </td>
+      </tr>
+
+      <tr>
+	<td> There should be world peace </td>
+	<td> Politics </td>
+	<td> verify_no_wars_or_conflicts </td>
+	<td> 15319.7 yrs </td>
+	<td class="fail"> Failed </td>
+	<td>  </td>
+      </tr>
+    </table>
+  </body>
+</html>
