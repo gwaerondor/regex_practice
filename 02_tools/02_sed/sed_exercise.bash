@@ -1,8 +1,7 @@
 #!/bin/bash
 
 print_instructions() {
-    cat <<EOF
-
+    less <<EOF
 ================================= sed exercise ================================
 sed is a tool that edits a stream of text. It has a lot of neat functionality,
 but today we will be looking at the substitute function.
@@ -50,6 +49,8 @@ replaced with \"
 Output the result to a file called new_games.csv with the > operator,
    sed s/subject/replacement/g < games.csv > new_games.csv
 
+When you think you are done, run this script again with the -c flag:
+   ./sed_exercise.bash -c
 EOF
 }
 

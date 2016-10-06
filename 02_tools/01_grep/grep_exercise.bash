@@ -1,8 +1,7 @@
 #!/bin/bash
 
 print_instructions() {
-    cat <<EOF
-
+    less <<EOF
 ================================= grep exercise ================================
 grep is a tool that can be used to find certain text in one or many files,
 and return only the matching lines.
