@@ -1,0 +1,43 @@
+#!/bin/bash
+
+print_instructions {
+    cat <<EOF
+================================= grep exercise ================================
+grep is a tool that can be used to find certain text in one or many files,
+and return only the matching lines.
+
+With the flag -P, grep will accept perl-style regular expressions.
+For example, if you want to find all lines starting with the letter A, the
+following command can be used:
+   grep -P "^A"
+
+In the directory of this exercise, there is a file called string_tests.erl which
+contains some pseudo-test cases for text operations.
+The Managers have asked you to produce a list of every test case header you
+have for string operations.
+
+Use grep on the contents of the file string_tests.erl to extract all of the
+lines containing test case headers. Save the results to a new file called
+headers.txt. You can do this by directing the output with the > operator:
+
+grep -P "[your regex here]" string_tests.erl > headers.txt
+
+The programmer has been naughty and not been using a consistent style throughout
+the file.
+
+The test case header is defined in any of the following ways, including the
+final comma:
+
+TC = "This is the first style of test case header",
+Tc = "This is the second style of test case header",
+Testcase = "This is the third style",
+testcase = "This is the fourth style",
+
+In other words, some variable or field name, followed by some text in double
+quotes, and finished off with a comma.
+
+To make matters worse, sometimes spaces are not used before or after the =,
+and sometimes several spaces are used!
+EOF
+}
+
