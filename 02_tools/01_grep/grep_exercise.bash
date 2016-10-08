@@ -3,14 +3,18 @@
 print_instructions() {
     less <<EOF
 ================================= grep exercise ================================
+INTRODUCTION
+--------------------------------------------------------------------------------
 grep is a tool that can be used to find certain text in one or many files,
 and return only the matching lines.
 
 With the flag -P, grep will accept perl-style regular expressions.
-For example, if you want to find all lines starting with the letter A, the
-following command can be used:
-   grep -P "^A"
+For example, if you want to find all words starting with the letter A from a
+dictionary the following command can be used:
+   grep -P "^A" dictionary.txt
 
+PROBLEM
+--------------------------------------------------------------------------------
 In the directory of this exercise, there is a file called stringlib_tests.erl
 which contains some pseudo-test cases for text operations.
 The Managers have asked you to produce a list of every test case header you
@@ -33,12 +37,18 @@ final comma:
   Testcase = "This is the third style",
   testcase = "This is the fourth style",
 
-In other words, some variable or field name, followed by some text in double
-quotes, and finished off with a comma. There can be any amount of indentation
-before the assignment.
+In other words, some variable or field name, then an equal sign followed by
+some text in double quotes, and finished off with a comma. There can be any
+amount of indentation before the assignment:
+  TC = "This is a tiny bit indented.",
+             TC = "This is more indented!",
 
 To make matters worse, sometimes spaces are not used before or after the =,
 and sometimes several spaces are used!
+  Testcase="no spaces.",
+  Testcase      = "Tons of spaces.",
+
+Extract the header lines in their entirity, including all white spaces.
 
 When you think you are done, run this script again with the flag -c
   ./grep_exercise.bash -c

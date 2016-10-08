@@ -3,11 +3,13 @@
 print_instructions() {
     less <<EOF
 ================================= sed exercise ================================
+INTRODUCTION:
+-------------------------------------------------------------------------------
 sed is a tool that edits a stream of text. It has a lot of neat functionality,
 but today we will be looking at the substitute function.
 
 sed makes a single pass over a stream of text and changes it according to a set
-of rules passed on by the user.
+of rules defined on by the user.
 The substitute function works as a search-and-replace.
 
 An example of the substitute function in use:
@@ -19,10 +21,23 @@ not just the first one encountered in the stream.
 You can pipe the result to sed to do another pass if you want:
   sed 's/blue/red/g' | sed 's/right/left/g'
 
-See the man page for sed for more information; man sed
+You can also use backreferences to capture groups:
+  echo "The Godfather" | sed 's/^The \(.*\)$/\1, the/g'
+If there are more than one capture group, backreference with \2, \3 and so on.
 
+You can also refer back to the entire match with the ampersand:
+  seq 99 -1 1 | sed 's/^[0-9]\+$/& bottles of beer on the wall'
+
+Note in the above examples that certain regex characters have been escaped in
+the regular expression, for example ( ) and +. For more information about
+regular expressions in sed please refer to the man page (man sed)
+and to the online documentation, available at:
+https://www.gnu.org/software/sed/manual/html_node/Regular-Expressions.html
+
+PROBLEM
+-------------------------------------------------------------------------------
 You have a .csv (comma-separated values) file, games.csv,
-that contains data in the format:
+that contains data roughly in the format:
    a,b,c,d
    e,f,g,h
    i,j,k,l
@@ -43,8 +58,8 @@ This allows for a single cell to have values such as:
 
 Of course, this means that old cells that already contained double quotes must
 have them replaced by something else. In this exercise, we will escape them with
-a backslash, so every cell that already contains a double quote should have it
-replaced with \"
+a backslash, so every cell that already contains a double quote should escape
+the double quotes, that is, replacing " with \"
 
 Output the result to a file called new_games.csv with the > operator,
    sed s/subject/replacement/g < games.csv > new_games.csv

@@ -2,17 +2,23 @@
 
 print_instructions() {
     less <<EOF
-================================= awk exercise ================================
+================================= AWK exercise ================================
+INTRODUCTION
+-------------------------------------------------------------------------------
 AWK is a programming language designed for processing and extracting text data.
 We will be using some of the most basic functionality here, to extract data
 from a document.
 
 The data we will be working with is a "webpage". In this exercise, the webpage
 is simulated by the file testresults.html which is in the same directory as
-this exercise. It contains a table with the results of a test run.
+the exercise. It contains a table with the results of a test run.
 HTML files are written in clear text, so in theory we COULD use grep, but we
 don't want all of those nasty <tags>. Therefore we will use w3m to fetch
-the data. You can try executing the following command:
+the data. w3m is a browser that works in terminals. It is also able to dump
+a website so that we can get all the data and make it easy to pass on to
+another program. That is exactly what we will be doing.
+
+You can try executing the following command:
    w3m -cols 999 -dump ./testresults.html
 The table data should be dumped to your terminal as a text stream.
 For more information about w3m, check the man page: man w3m
@@ -20,9 +26,9 @@ For more information about w3m, check the man page: man w3m
 Now that we have the data, it is time to put it to use. AWK programs can be
 executed directly from the shell with the flag -e,
    awk -e 'script goes here'
-AWK will split its input data into fields, which can then be accessed through
-the script itself. The default delimiter is space, which is what we will be
-using in this exercise as well.
+AWK will split the input data into fields, which can then be accessed through
+the script itself. The default field delimiter is space, which is what we will
+be using in this exercise as well, but it can be set to anything you like.
 
 The AWK script will read through the input data line by line, and for each line
 a set of specified actions will be performed. We will only need to know about
@@ -36,13 +42,19 @@ access field number N using $N, and the command print will print it to the
 screen. We can add a condition to this:
    awk -e 'match($1, /regex/) { BODY }'
 
+PROBLEM
+-------------------------------------------------------------------------------
 Now for the task:
 We want to know the suites and the testnames of all failing and skipped test
-cases. We do not care about the other columns or rows. Separate suite name
-and testcase name with a space. Put the result in a file called bad_tests.txt
+cases. We do not care about the other columns or rows; we don't want to know
+the comments or the test descriptions for the failing or skipped tests,
+and we don't care about the passing tests at all.
+Separate suite name and testcase name with a space.
+Put the result in a file called bad_tests.txt
 
-Your task this time is relatively simple, but shows an example of how regular
-expressions can be used with tools to create powerful programs with simple
+The task this time is relatively simple; the solution is more or less exactly
+as in the examples above. But the exercise shows an example of how regular
+expressions can be used with tools to do powerful stuff with simple
 commands.
 
 When you think you are done, run this script again with the -c flag:
